@@ -112,7 +112,13 @@ public class PostagensModel {
 	}
 
 	public Integer getQtd_like() {
-		return like.size();
+		if (like == null) {
+			return 0;
+		}
+		else {
+			return like.size();
+		}
+		
 	}
 
 	public String getTexto() {
