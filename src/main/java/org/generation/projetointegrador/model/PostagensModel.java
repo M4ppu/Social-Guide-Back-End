@@ -31,6 +31,7 @@ public class PostagensModel {
 	@Size (min = 5, max =100)
 	private String titulo;
 	
+	private String texto;
 
 	@UpdateTimestamp
 	private LocalDateTime data;
@@ -114,8 +115,12 @@ public class PostagensModel {
 		return like.size();
 	}
 
-	public void setQtd_like(Integer qtd_like) {
-		this.qtd_like = qtd_like;
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
 	}
 			
 }
