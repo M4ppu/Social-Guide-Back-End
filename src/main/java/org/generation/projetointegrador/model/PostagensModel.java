@@ -28,7 +28,7 @@ public class PostagensModel {
 	@GeneratedValue(strategy= GenerationType.IDENTITY) 
 	private Long id;	
 	
-	@Size (min = 5, max =100)
+	@Size (min = 5, max =100, message = "O atributo titulo deve ter no mínimo 5 caracteres")
 	private String titulo;
 	
 	private String texto;
