@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,8 +26,7 @@ public class PostagensModel {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY) 
-	private Long id;
-	
+	private Long id;	
 	
 	@Size (min = 5, max =100)
 	private String titulo;
@@ -46,12 +46,17 @@ public class PostagensModel {
 	@JsonIgnoreProperties("Usuario")
 	private UsuarioModel usuario;
 	
-	@OneToMany(mappedBy="postagem",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="postagem", fetch=FetchType.EAGER)
 	@Fetch(FetchMode.JOIN)	
-	@JsonIgnoreProperties("Like")
+	@JsonIgnoreProperties("like")
 	private List<PostagensLikeModel> like;
 	
-	@JsonIgnoreProperties("qtdLike")
+//	@ManyToMany(mappedBy="postagem", fetch=FetchType.EAGER)
+//	@Fetch(FetchMode.JOIN)
+//	@JsonIgnoreProperties("comentarios")
+//	private List<ComentarioModel> comentarios;
+	
+	@JsonIgnoreProperties("qtd_like")
 	private Integer qtd_like;
 
 	public Long getId() {
@@ -128,5 +133,12 @@ public class PostagensModel {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-			
+
+//	public List<ComentarioModel> getComentarios() {
+//		return comentarios;
+//	}
+//
+//	public void setComentarios(List<ComentarioModel> comentarios) {
+//		this.comentarios = comentarios;
+//	}	
 }
