@@ -1,10 +1,17 @@
 package org.generation.projetointegrador.controller;
 
+import java.util.List;
+
 import org.generation.projetointegrador.model.Comentario;
+import org.generation.projetointegrador.model.ComentarioModel;
+import org.generation.projetointegrador.model.UsuarioModel;
+import org.generation.projetointegrador.repository.ComentarioRepository;
 import org.generation.projetointegrador.service.ComentarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,6 +27,9 @@ public class ComentarioController {
 	@Autowired
 	private ComentarioService comentarioService;
 	
+	@Autowired
+	private ComentarioRepository repository;
+	
 	@PostMapping("/{postagem}/{usuario}")
 	private void findById(@PathVariable Long postagem, @PathVariable Long usuario, @RequestBody Comentario comentarios){
 		comentarioService.adicionarComentario(usuario, postagem, comentarios);
@@ -34,4 +44,9 @@ public class ComentarioController {
 	public void delete(@PathVariable Long postagem, @PathVariable Long usuario){
 		comentarioService.removerComentario(postagem, usuario);
 	}
+	
+	@GetMapping("/{postagem}")
+    public List<ComentarioModel> getById(@PathVariable Long postagem) {
+        return repository.findByPostagem(postagem);
+    }
 }

@@ -18,9 +18,13 @@ public interface ComentarioRepository extends JpaRepository<ComentarioModel, Lon
 	
 	@Modifying
 	@Query("delete from ComentarioModel p where p.postagem = :postagem and p.usuario = :usuario")
-	int deletar(@Param("postagem") Long postagem, @Param("usuario") Long usuario);
+	Integer deletar(@Param("postagem") Long postagem, @Param("usuario") Long usuario);
 	
 	@Modifying
 	@Query("update ComentarioModel p set comentarios = :comentarios where p.postagem = :postagem and p.usuario = :usuario")
 	Integer editar(@Param("comentarios") String comentarios, @Param("postagem") Long postagem, @Param("usuario") Long usuario);
+
+	// public Object findByPostagem(Long postagem);
+	
+	public List<ComentarioModel> findByPostagem(Long postagem);
 }
