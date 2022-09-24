@@ -1,13 +1,15 @@
 package org.generation.projetointegrador.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.generation.projetointegrador.model.Comentario;
 import org.generation.projetointegrador.model.ComentarioModel;
-import org.generation.projetointegrador.model.UsuarioModel;
+import org.generation.projetointegrador.model.PostagensModel;
 import org.generation.projetointegrador.repository.ComentarioRepository;
 import org.generation.projetointegrador.service.ComentarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,23 +32,30 @@ public class ComentarioController {
 	@Autowired
 	private ComentarioRepository repository;
 	
-	@PostMapping("/{postagem}/{usuario}")
-	private void findById(@PathVariable Long postagem, @PathVariable Long usuario, @RequestBody Comentario comentarios){
-		comentarioService.adicionarComentario(usuario, postagem, comentarios);
+	
+	@PostMapping
+	public ResponseEntity<ComentarioModel> post(@RequestBody ComentarioModel comentarios){
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(comentarios));
 	}
 	
-	@PutMapping("/{postagem}/{usuario}")
-	private void edit(@PathVariable Long postagem, @PathVariable Long usuario, @RequestBody Comentario comentarios){
-		comentarioService.editarComentario(usuario, postagem, comentarios);
+	//@PutMapping
+	//private void edit(@RequestBody ComentarioModel comentarios){
+	//	comentarioService.editarComentario(comentarios);
+	//}
+	
+	@PutMapping
+	public ResponseEntity<ComentarioModel> put (@RequestBody ComentarioModel comentario){
+		return ResponseEntity.ok().body(repository.save(comentario));
 	}
 	
-	@DeleteMapping("/{postagem}/{usuario}")
-	public void delete(@PathVariable Long postagem, @PathVariable Long usuario){
-		comentarioService.removerComentario(postagem, usuario);
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable Long id) {
+		repository.deleteById(id);
 	}
 	
-	@GetMapping("/{postagem}")
-    public List<ComentarioModel> getById(@PathVariable Long postagem) {
-        return repository.findByPostagem(postagem);
+	
+	@GetMapping("/{id}")
+    public Optional<ComentarioModel> getById(@PathVariable Long id) {
+        return repository.findById(id);
     }
 }

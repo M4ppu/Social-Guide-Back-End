@@ -3,6 +3,7 @@ package org.generation.projetointegrador.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -51,10 +52,9 @@ public class PostagensModel {
 	@JsonIgnoreProperties("like")
 	private List<PostagensLikeModel> like;
 	
-//	@ManyToMany(mappedBy="postagem", fetch=FetchType.EAGER)
-//	@Fetch(FetchMode.JOIN)
-//	@JsonIgnoreProperties("comentarios")
-//	private List<ComentarioModel> comentarios;
+	@OneToMany(mappedBy = "postagem",cascade = CascadeType.ALL)
+	@JsonIgnoreProperties({"postagem","usuario"})
+	private List<ComentarioModel> comentarios;
 	
 	@JsonIgnoreProperties("qtd_like")
 	private Integer qtd_like;
@@ -134,11 +134,11 @@ public class PostagensModel {
 		this.texto = texto;
 	}
 
-//	public List<ComentarioModel> getComentarios() {
-//		return comentarios;
-//	}
-//
-//	public void setComentarios(List<ComentarioModel> comentarios) {
-//		this.comentarios = comentarios;
-//	}	
+	public List<ComentarioModel> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<ComentarioModel> comentarios) {
+		this.comentarios = comentarios;
+	}	
 }

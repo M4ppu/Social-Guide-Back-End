@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.generation.projetointegrador.model.ComentarioModel;
+import org.generation.projetointegrador.model.PostagensModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -26,5 +27,5 @@ public interface ComentarioRepository extends JpaRepository<ComentarioModel, Lon
 
 	// public Object findByPostagem(Long postagem);
 	
-	public List<ComentarioModel> findByPostagem(Long postagem);
+	public List<ComentarioModel> findByPostagem(PostagensModel postagem);
 }
