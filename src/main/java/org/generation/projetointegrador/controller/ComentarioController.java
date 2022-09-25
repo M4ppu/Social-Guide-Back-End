@@ -7,7 +7,6 @@ import org.generation.projetointegrador.model.Comentario;
 import org.generation.projetointegrador.model.ComentarioModel;
 import org.generation.projetointegrador.model.PostagensModel;
 import org.generation.projetointegrador.repository.ComentarioRepository;
-import org.generation.projetointegrador.service.ComentarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/postagens/comentarios")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ComentarioController {
-	
-	@Autowired
-	private ComentarioService comentarioService;
 	
 	@Autowired
 	private ComentarioRepository repository;

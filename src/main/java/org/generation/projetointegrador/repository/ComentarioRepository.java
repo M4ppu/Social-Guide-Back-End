@@ -17,15 +17,13 @@ import org.springframework.stereotype.Repository;
 public interface ComentarioRepository extends JpaRepository<ComentarioModel, Long>{
 	public List<ComentarioModel> findAllByComentariosContainingIgnoreCase(@Param("comentarios") String comentarios);
 	
-	@Modifying
-	@Query("delete from ComentarioModel p where p.postagem = :postagem and p.usuario = :usuario")
-	Integer deletar(@Param("postagem") Long postagem, @Param("usuario") Long usuario);
-	
-	@Modifying
-	@Query("update ComentarioModel p set comentarios = :comentarios where p.postagem = :postagem and p.usuario = :usuario")
-	Integer editar(@Param("comentarios") String comentarios, @Param("postagem") Long postagem, @Param("usuario") Long usuario);
+//	@Modifying
+//	@Query("delete from ComentarioModel p where p.postagem = :postagem and p.usuario = :usuario")
+//	Integer deletar(@Param("postagem") Long postagem, @Param("usuario") Long usuario);
+//	
+//	@Modifying
+//	@Query("update ComentarioModel p set comentarios = :comentarios where p.postagem = :postagem and p.usuario = :usuario")
+//	Integer editar(@Param("comentarios") String comentarios, @Param("postagem") Long postagem, @Param("usuario") Long usuario);
 
-	// public Object findByPostagem(Long postagem);
-	
-	public List<ComentarioModel> findByPostagem(PostagensModel postagem);
+//	public List<ComentarioModel> findByPostagem(PostagensModel postagem);
 }
