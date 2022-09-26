@@ -3,7 +3,6 @@ package org.generation.projetointegrador.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.generation.projetointegrador.model.Comentario;
 import org.generation.projetointegrador.model.ComentarioModel;
 import org.generation.projetointegrador.model.PostagensModel;
 import org.generation.projetointegrador.repository.ComentarioRepository;
