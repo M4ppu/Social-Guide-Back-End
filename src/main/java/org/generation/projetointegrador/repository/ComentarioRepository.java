@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.generation.projetointegrador.model.ComentarioModel;
 import org.generation.projetointegrador.model.PostagensModel;
+import org.generation.projetointegrador.model.UsuarioModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -26,4 +27,8 @@ public interface ComentarioRepository extends JpaRepository<ComentarioModel, Lon
 //	Integer editar(@Param("comentarios") String comentarios, @Param("postagem") Long postagem, @Param("usuario") Long usuario);
 
 //	public List<ComentarioModel> findByPostagem(PostagensModel postagem);
+	
+	@Modifying
+	@Query("update ComentarioModel p set p.nome = :nome, p.foto = :foto where p.usuario = :usuario ")
+	int atualizar(@Param("nome") String nome, @Param("foto") String foto, @Param("usuario") UsuarioModel usuario);
 }

@@ -54,4 +54,9 @@ public class ComentarioController {
     public Optional<ComentarioModel> getById(@PathVariable Long id) {
         return repository.findById(id);
     }
+	
+	@PutMapping("/update")
+	public ResponseEntity<Integer> put1 (@RequestBody ComentarioModel comentario){
+		return ResponseEntity.ok().body(repository.atualizar(comentario.getNome(), comentario.getFoto(), comentario.getUsuario()));
+	}
 }
